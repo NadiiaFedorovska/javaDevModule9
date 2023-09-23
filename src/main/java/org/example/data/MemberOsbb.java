@@ -10,6 +10,7 @@ import java.util.List;
 public class MemberOsbb implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String role;
 

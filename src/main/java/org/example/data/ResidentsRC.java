@@ -10,15 +10,16 @@ import java.util.List;
 public class ResidentsRC implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int residents_rc_id;
     private String name;
     private int tel;
     @Column(name = "e_mail")
     private String eMail;
     private char entry_by_car;
 
-    public int getId() {
-        return id;
+    public int getResidents_rc_id() {
+        return residents_rc_id;
     }
 
     public String getName() {
@@ -61,10 +62,10 @@ public class ResidentsRC implements Serializable {
         this.member_osbb = member_osbb;
     }
 
-    @ManyToMany(mappedBy = "residentsRCList", cascade = CascadeType.ALL)
-    private List<Flat> flatList = new ArrayList<>();
+    @ManyToMany(mappedBy = "residentsRC", cascade = CascadeType.ALL)
+    private List<Flat> flat = new ArrayList<>();
 
-    public void setFlatList(List<Flat> flatList) {
-        this.flatList = flatList;
+    public void setFlat(List<Flat> flat) {
+        this.flat = flat;
     }
 }

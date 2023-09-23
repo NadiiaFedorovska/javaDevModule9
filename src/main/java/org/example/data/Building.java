@@ -36,9 +36,9 @@ public class Building implements Serializable {
     }
 
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Flat> flats = new ArrayList<>();
+    private List<Flat> flat = new ArrayList<>();
 
-    public List<Flat> getFlats() {
-        return flats;
+    public List<Flat> getFlat() {
+        return flat;
     }
 }

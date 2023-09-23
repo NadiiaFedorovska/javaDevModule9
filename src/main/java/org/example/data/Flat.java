@@ -59,9 +59,9 @@ public class Flat implements Serializable {
             joinColumns = @JoinColumn(name = "flats_id"),
             inverseJoinColumns = @JoinColumn(name = "residents_RC_id")
     )
-    private List<ResidentsRC> residentsRCList = new ArrayList<>();
+    private List<ResidentsRC> residentsRC = new ArrayList<>();
 
-    public void setResidentsRCList(List<ResidentsRC> residentsRCList) {
-        this.residentsRCList = residentsRCList;
+    public void setResidentsRC(List<ResidentsRC> residentsRC) {
+        this.residentsRC = residentsRC;
     }
 }
