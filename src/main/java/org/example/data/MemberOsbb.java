@@ -26,7 +26,7 @@ public class MemberOsbb implements Serializable {
         this.role = role;
     }
 
-    @OneToMany(mappedBy = "member_osbb", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "memberOsbb", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ResidentsRC> residentsRC = new ArrayList<>();
 
     public List<ResidentsRC> getResidentsRC() {

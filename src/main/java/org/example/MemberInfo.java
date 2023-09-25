@@ -8,16 +8,15 @@ public class MemberInfo {
     private String street;
     private int buildingNumber;
     private String name;
-    private int residents_rc_id;
     private String eMail;
     private int tel;
-    private char entry_by_car;
+    private char entryByCar;
 
     public MemberInfo() {
     }
 
     public MemberInfo(int id, int flatNumber, int numberOfRooms, int square, String street,
-                      int buildingNumber, String name, int residents_rc_id, String eMail, int tel, char entry_by_car) {
+                      int buildingNumber, String name, String eMail, int tel, char entryByCar) {
         this.id = id;
         this.flatNumber = flatNumber;
         this.numberOfRooms = numberOfRooms;
@@ -25,10 +24,9 @@ public class MemberInfo {
         this.street = street;
         this.buildingNumber = buildingNumber;
         this.name = name;
-        this.residents_rc_id = residents_rc_id;
         this.eMail = eMail;
         this.tel = tel;
-        this.entry_by_car = entry_by_car;
+        this.entryByCar = entryByCar;
     }
 
     public int getId() {
@@ -76,12 +74,12 @@ public class MemberInfo {
         return this;
     }
 
-    public char getEntry_by_car() {
-        return entry_by_car;
+    public char getEntryByCar() {
+        return entryByCar;
     }
 
-    public MemberInfo setEntry_by_car(char entry_by_car) {
-        this.entry_by_car = entry_by_car;
+    public MemberInfo setEntryByCar(char entryByCar) {
+        this.entryByCar = entryByCar;
         return this;
     }
 
@@ -121,14 +119,6 @@ public class MemberInfo {
         return this;
     }
 
-    public int getResidents_rc_id() {
-        return residents_rc_id;
-    }
-
-    public void setResidents_rc_id(int residents_rc_id) {
-        this.residents_rc_id = residents_rc_id;
-    }
-
     @Override
     public String toString() {
         return "MemberInfo{" +
@@ -139,10 +129,9 @@ public class MemberInfo {
                 ", street='" + street + '\'' +
                 ", buildingNumber=" + buildingNumber +
                 ", name='" + name + '\'' +
-                ", residents_rc_id=" + residents_rc_id +
                 ", eMail='" + eMail + '\'' +
                 ", tel=" + tel +
-                ", entry_by_car=" + entry_by_car +
+                ", entryByCar=" + entryByCar +
                 '}';
     }
 }

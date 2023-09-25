@@ -23,6 +23,7 @@ public class App {
             for (MemberInfo result : results) {
                 logger.info(result);
             }
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {

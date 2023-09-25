@@ -11,15 +11,16 @@ public class ResidentsRC implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int residents_rc_id;
+    private int residentsRCId;
     private String name;
     private int tel;
     @Column(name = "e_mail")
     private String eMail;
-    private char entry_by_car;
+    @Column(name = "entry_by_car")
+    private char entryByCar;
 
-    public int getResidents_rc_id() {
-        return residents_rc_id;
+    public int getResidentsRCId() {
+        return residentsRCId;
     }
 
     public String getName() {
@@ -46,20 +47,20 @@ public class ResidentsRC implements Serializable {
         this.eMail = eMail;
     }
 
-    public char getEntry_by_car() {
-        return entry_by_car;
+    public char getEntryByCar() {
+        return entryByCar;
     }
 
-    public void setEntry_by_car(char entry_by_car) {
-        this.entry_by_car = entry_by_car;
+    public void setEntryByCar(char entryByCar) {
+        this.entryByCar = entryByCar;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_osbb_id")
-    private MemberOsbb member_osbb;
+    private MemberOsbb memberOsbb;
 
-    public void setMember_osbb(MemberOsbb member_osbb) {
-        this.member_osbb = member_osbb;
+    public void setMemberOsbb(MemberOsbb memberOsbb) {
+        this.memberOsbb = memberOsbb;
     }
 
     @ManyToMany(mappedBy = "residentsRC", cascade = CascadeType.ALL)

@@ -19,12 +19,14 @@ public class CriteriaCRUD {
         Join<Flat, Building> buildingJoin = flatRoot.join("building", JoinType.LEFT);
         Join<Flat, ResidentsRC> residentsJoin = flatRoot.join("residentsRC", JoinType.LEFT);
 
-        CriteriaBuilder subqueryBuilder = entityManager.getCriteriaBuilder();
+        Subquery<Long> subquery = query.subquery(Long.class);
+        Root<Flat> subqueryFlatRoot = subquery.from(Flat.class);
+        Join<Flat, ResidentsRC> subqueryResidentsJoin = subqueryFlatRoot.join("residentsRC", JoinType.LEFT);
+        subquery.select(criteriaBuilder.count(subqueryFlatRoot.get("id")))
+                .where(criteriaBuilder.equal(subqueryResidentsJoin, residentsJoin));
 
-        CriteriaQuery<Long> subquery = subqueryBuilder.createQuery(Long.class);
-        Root<ResidentsRC> subqueryRoot = subquery.from(ResidentsRC.class);
-        subquery.select(subqueryBuilder.count(subqueryRoot.get("flat")));
-        subquery.distinct(true);
+        subquery.select(criteriaBuilder.count(subqueryFlatRoot.get("id")))
+                .where(criteriaBuilder.equal(subqueryResidentsJoin, residentsJoin));
 
         query.select(
                 criteriaBuilder.construct(
@@ -36,21 +38,16 @@ public class CriteriaCRUD {
                         buildingJoin.get("street"),
                         buildingJoin.get("buildingNumber"),
                         residentsJoin.get("name"),
-                        residentsJoin.get("residents_rc_id"),
                         residentsJoin.get("eMail"),
                         residentsJoin.get("tel"),
-                        residentsJoin.get("entry_by_car")
+                        residentsJoin.get("entryByCar")
                 )
         );
 
-//        query.where(criteriaBuilder.and
-//                (criteriaBuilder.equal(residentsJoin.get("entry_by_car"), '-')));
-//        query.orderBy(criteriaBuilder.asc(residentsJoin.get("residents_rc_id")));
-
         query.where(criteriaBuilder.and(
-                criteriaBuilder.equal(residentsJoin.get("entry_by_car"), '-'),
-                criteriaBuilder.equal(subqueryBuilder.count(subqueryRoot.get("flat")), 1L))
-        );
+                criteriaBuilder.equal(residentsJoin.get("entryByCar"), '-'),
+                  criteriaBuilder.equal(subquery, 1L)
+        ));
 
         return entityManager.createQuery(query).getResultList();
     }
